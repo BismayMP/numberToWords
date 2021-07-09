@@ -9,9 +9,7 @@ import router from './src/routes/api'
 
 dotenv.config()
 const app = express()
-const PORT = process.env.PORT || 4000
-
-// The root provides a resolver function for each API endpoint
+const PORT = process.env.PORT || 8080
 
 app.use(
   '/graphql',

@@ -13,27 +13,31 @@ export const errorMessages = {
   notValid: 'Input cannot contain only digits and no 0/1',
 }
 
-export const validate = (number: string) => number && number.match('^[2-9]+$')
+export const validate = (str: string): boolean =>
+  Boolean(str && str.match('^[2-9]+$'))
 
-export const getWords = (number: string) => {
+export const getWords = (str: string): string[] => {
   let result: string[] = []
-  for (const i of number) {
-    const added = []
-    const letters = NUMBERS[i]
-    if (letters) {
-      for (const letter of letters) {
-        if (result.length) {
-          for (let i = result.length - 1; i >= 0; i--) {
-            added.push(result[i] + letter)
+  try {
+    str.split('').forEach((number: string) => {
+      const newWords: string[] = []
+      const letters: string = NUMBERS[number]
+      if (letters) {
+        for (const letter of letters) {
+          if (result.length) {
+            result.forEach((word: string) => {
+              newWords.push(word + letter)
+            })
+          } else {
+            newWords.push(letter)
           }
-        } else {
-          added.push(letter)
         }
       }
-    } else {
-      added.push(...result)
-    }
-    result = added
+      result = newWords
+    })
+  } catch (error) {
+    console.error(error)
   }
+
   return result
 }
