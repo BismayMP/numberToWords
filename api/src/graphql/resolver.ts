@@ -1,8 +1,8 @@
 import { getWords, validate, errorMessages } from '../controllers/api/index'
 
 type ParamType = {
-  number: string
-}
+  number: string;
+};
 
 export default {
   // Queries
