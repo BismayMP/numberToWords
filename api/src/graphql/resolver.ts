@@ -1,13 +1,13 @@
 import { getWords, validate, errorMessages } from '../controllers/api/index'
+import { GetWordsResponse } from '../utils/types'
 
 type ParamType = {
-  number: string;
-};
+  number: string
+}
 
 export default {
-  // Queries
-
-  getWords: async ({ number }: ParamType) => {
+  // Querie
+  getWords: ({ number }: ParamType): GetWordsResponse => {
     if (validate(number)) {
       const words = getWords(number)
       return { success: true, words }

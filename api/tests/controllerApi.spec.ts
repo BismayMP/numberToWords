@@ -1,5 +1,5 @@
 import { getWords, validate } from '../src/controllers/api'
-import { getWordsResponse } from './__mocks__'
+import { mockedGetWordsResponse } from './__mocks__'
 
 describe('getWords using 23 as aparameter', () => {
   let words: string[] = []
@@ -10,7 +10,7 @@ describe('getWords using 23 as aparameter', () => {
     expect(words).toBeDefined()
   })
   test('getWords response expected to be defined', () => {
-    expect(words).toEqual(getWordsResponse)
+    expect(words).toEqual(mockedGetWordsResponse)
   })
 })
 
