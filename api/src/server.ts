@@ -1,9 +1,10 @@
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
+import expressPlayground from 'graphql-playground-middleware-express'
 import dotenv from 'dotenv'
-import resolver from './src/graphql/resolver'
-import schema from './src/graphql/schema'
-import router from './src/routes/api'
+import resolver from './graphql/resolver'
+import schema from './graphql/schema'
+import router from './routes/api'
 
 // Constants Declarations
 
@@ -18,6 +19,8 @@ app.use(
     graphiql: true,
   }),
 )
+
+app.get('/playground', expressPlayground({ endpoint: '/graphql' }))
 
 app.use('/api', router)
 

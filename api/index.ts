@@ -1,4 +1,4 @@
-import app from './server'
+import app from './src/server'
 import dotenv from 'dotenv'
 dotenv.config()
 const PORT = process.env.PORT
