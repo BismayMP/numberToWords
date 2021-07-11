@@ -1,0 +1,68 @@
+@import '../../styles/vars.scss';
+
+@keyframes switch {
+  from {
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+  }
+}
+
+.switch-container {
+  display: inline-block;
+  width: 100%;
+  justify-content: center;
+}
+
+.switch {
+  cursor: pointer;
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  input[type='checkbox']:checked + .lever {
+    background-color: #dccfe2;
+  }
+  input[type='checkbox']:checked + .lever:after {
+    left: 1.5rem;
+    background-color: #a6c;
+  }
+}
+
+.lever {
+  position: relative;
+  display: inline-block;
+  margin: 0 1rem;
+  margin-right: 0.625rem;
+  vertical-align: middle;
+  content: '';
+  background-color: #818181;
+  border-radius: 0.9375rem;
+  width: 2.5rem;
+  height: 0.9375rem;
+  -webkit-transition: switch 0.3s ease;
+  transition: switch 0.3s ease;
+  &::after {
+    position: absolute;
+    top: -0.1875rem;
+    left: -0.3125rem;
+    display: inline-block;
+    content: '';
+    background-color: #f1f1f1;
+    border-radius: 1.3125rem;
+    -webkit-box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgb(0 0 0 / 40%);
+    box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgb(0 0 0 / 40%);
+    width: 1.3125rem;
+    height: 1.3125rem;
+    -webkit-transition: left 0.3s ease, switch 0.3s ease,
+      -webkit-box-shadow 1s ease;
+    transition: left 0.3s ease, switch 0.3s ease, -webkit-box-shadow 1s ease;
+    transition: left 0.3s ease, switch 0.3s ease, box-shadow 1s ease;
+    transition: left 0.3s ease, switch 0.3s ease, box-shadow 1s ease,
+      -webkit-box-shadow 1s ease;
+  }
+}
