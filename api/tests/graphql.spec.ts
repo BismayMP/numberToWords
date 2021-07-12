@@ -107,25 +107,4 @@ describe('Graphql endpoints', () => {
     expect(res.body.data?.getWords?.words?.length).toBeGreaterThanOrEqual(3)
     expect(res.body.data?.getWords?.words).toEqual(['a', 'b', 'c'])
   })
-
-  test('fetch words using 23456789', async () => {
-    const res = await request(app)
-      .post('/graphql')
-      .send({
-        query: `{  
-            getWords(phoneNumber: "23456789"){ 
-                success
-                words
-                error
-            }
-        }`,
-      })
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200)
-    expect(res.body.data?.getWords?.success).toBeTruthy()
-    expect(res.body.data?.getWords?.words).toBeDefined()
-    expect(res.body.data?.getWords?.error).toEqual(null)
-    expect(res.body.data?.getWords?.words?.length).toBeGreaterThan(300)
-  })
 })
