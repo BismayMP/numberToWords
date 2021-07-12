@@ -5,11 +5,14 @@ import dotenv from 'dotenv'
 import resolver from './graphql/resolver'
 import schema from './graphql/schema'
 import router from './routes/api'
+import cors from 'cors'
 
 // Constants Declarations
 
 dotenv.config()
 const app = express()
+
+app.use(cors())
 
 app.use(
   '/graphql',

@@ -1,12 +1,21 @@
 import { getWords, validate } from '../src/controllers/api'
-import { mockedGetWordsResponse } from './__mocks__'
+import {
+  mockedGetWordsResponseFor23,
+  mockedGetWordsResponseFor234,
+} from './__mocks__'
 
-describe('getWords using 23 as aparameter', () => {
-  test('getWords response expected to be defined', () => {
+describe('getWords response expected to be defined getWords using 23 as aparameter', () => {
+  test('getWords response expected to be defined using 23', () => {
     const words = getWords('23')
     expect(words).toBeDefined()
-    expect(words).toEqual(mockedGetWordsResponse)
+    expect(words).toEqual(mockedGetWordsResponseFor23)
   })
+  test('getWords response expected to be defined using 234', () => {
+    const words = getWords('234')
+    expect(words).toBeDefined()
+    expect(words).toEqual(mockedGetWordsResponseFor234)
+  })
+
   test('getWords response expected to be defined using 98765432', () => {
     const words = getWords('98765432')
     expect(words).toBeDefined()

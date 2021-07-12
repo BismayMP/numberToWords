@@ -7,7 +7,7 @@ const router = express.Router()
 // GET
 
 router.get('/:number', (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Origin', '*')
   if (validate(req?.params?.number)) {
     const words = getWords(req.params.number)
     res.status(200).json({ success: true, words })
