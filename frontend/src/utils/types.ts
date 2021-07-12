@@ -3,3 +3,11 @@ export enum OptionTypes {
   filter = 'wordsFilter',
   realTime = 'realTime',
 }
+
+export type getWordsResponseType = {
+    data: {    
+        success: boolean,
+        words: string[],
+        error: string
+    }
+}

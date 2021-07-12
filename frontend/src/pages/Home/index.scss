@@ -1,9 +1,77 @@
 @import '../../styles/vars.scss';
 
+@keyframes enterBadges {
+  from {
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+  }
+}
+
 .home-container {
   margin-top: 5rem;
+  justify-content: center;
 }
 
 .input {
-  border-radius: calc(1.5em + 0.75rem + 2px);
+  border-radius: calc(1.5em + 0.75rem + 2px) !important;
+}
+
+.input-container {
+  justify-content: center;
+  .input-group {
+    width: 60%;
+  }
+}
+
+.btn-search {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  z-index: 4;
+  right: 2px;
+  &:focus {
+    border: none;
+    box-shadow: none;
+  }
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.word-badge {
+  animation: enterBadges 0.4 ease-in 0.1;
+  margin: 0.25rem;
+  background-color: #28a138;
+  &:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}
+
+.isLoading {
+  width: 100%;
+  display: grid;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.words-container {
+  justify-content: center;
+  text-align: center;
+  h4 {
+    margin: 1rem 0px;
+    width: 100%;
+  }
 }
