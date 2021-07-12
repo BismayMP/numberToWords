@@ -26,7 +26,7 @@ const HomePage = () => {
   const [error, setError] = useState('')
   const [isLoading, setLoading] = useState(false)
   const [showKeyboard, setShowKeyboard] = useState(false)
-  const [numbers, setNumbers] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [words, setWords] = useState<string[]>([])
   const [getWords, { loading, data }] = useLazyQuery(GET_WORDS)
 
@@ -58,7 +58,7 @@ const HomePage = () => {
   const fetchWords = async (str?: string) => {
     if (apiType) {
       getWords({
-        variables: { number: numbers },
+        variables: { phoneNumber: phoneNumber },
       })
     } else {
       setLoading(true)
@@ -80,7 +80,7 @@ const HomePage = () => {
   }
 
   const handleInputChange = ({ target: { value } }: any) => {
-    setNumbers(value)
+    setPhoneNumber(value)
     if (realTimeFetch) {
       fetchWords(value)
     }
@@ -95,7 +95,7 @@ const HomePage = () => {
             className="input"
             type="tel"
             aria-label="Default"
-            value={numbers}
+            value={phoneNumber}
             onChange={handleInputChange}
             aria-describedby="inputGroup-sizing-default"
           />
@@ -103,7 +103,7 @@ const HomePage = () => {
             <Button
               variant="text"
               className="btn-search"
-              onClick={() => fetchWords(numbers)}
+              onClick={() => fetchWords(phoneNumber)}
             >
               Generate
             </Button>
@@ -119,7 +119,7 @@ const HomePage = () => {
       <Row noGutters className="words-container">
         {words.length > 0 && (
           <>
-            <h4>Generated Words for {numbers}</h4>
+            <h4>Generated Words for {phoneNumber}</h4>
             {words.map((word: string, index: number) => {
               return (
                 <>
@@ -152,8 +152,8 @@ const HomePage = () => {
 export default HomePage
 
 const GET_WORDS = gql`
-  query GetWords($number: String) {
-    getWords(number: $number) {
+  query GetWords($phoneNumber: String) {
+    getWords(phoneNumber: $phoneNumber) {
       success
       words
       error
