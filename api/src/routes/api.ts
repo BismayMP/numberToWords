@@ -6,13 +6,18 @@ const router = express.Router()
 /** Routes */
 // GET
 
-router.get('/:number', (req, res) => {
+router.get('/:phoneNumber', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*')
-  if (validate(req?.params?.number)) {
-    const words = getWords(req.params.number)
-    res.status(200).json({ success: true, words })
+  if (validate(req?.params?.phoneNumber)) {
+    try {
+      const words = getWords(req.params.phoneNumber)
+      res.status(200).json({ success: true, words })
+    } catch (error) {
+      console.error(error)
+      res.status(500)
+    }
   } else {
-    res.json({ success: false, error: errorMessages.notValid })
+    res.status(400).json({ success: false, error: errorMessages.notValid })
   }
 })
 

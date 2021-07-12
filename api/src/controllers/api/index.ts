@@ -44,12 +44,9 @@ const formWords = (
 export const getWords = (str: string): string[] => {
   const result: string[] = []
   const currentWordLetters: string[] = []
-  try {
+  if (validate(str)) {
     const number = str.split('').map((item: string) => parseInt(item))
     formWords(number, 0, currentWordLetters, number.length, result)
-  } catch (error) {
-    console.error(error)
   }
-
   return result
 }

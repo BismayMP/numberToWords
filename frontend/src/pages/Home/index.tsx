@@ -8,6 +8,7 @@ import {
   Badge,
   Spinner,
   Alert,
+  Card,
 } from 'react-bootstrap'
 import Options from '../../components/Options'
 import { OptionTypes, getWordsResponseType } from '../../utils/types'

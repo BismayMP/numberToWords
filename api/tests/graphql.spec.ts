@@ -16,7 +16,7 @@ describe('Graphql endpoints', () => {
       .post('/graphql')
       .send({
         query: `{  
-            getWords(number: "12"){ 
+            getWords(phoneNumber: "12"){ 
                 success
                 words
                 error
@@ -40,7 +40,7 @@ describe('Graphql endpoints', () => {
       .post('/graphql')
       .send({
         query: `{  
-            getWords(number: "23"){ 
+            getWords(phoneNumber: "23"){ 
                 success
                 words
                 error
@@ -67,7 +67,7 @@ describe('Graphql endpoints', () => {
       .post('/graphql')
       .send({
         query: `{  
-            getWords(number: "234"){ 
+            getWords(phoneNumber: "234"){ 
                 success
                 words
                 error
@@ -91,7 +91,7 @@ describe('Graphql endpoints', () => {
       .post('/graphql')
       .send({
         query: `{  
-            getWords(number: "2"){ 
+            getWords(phoneNumber: "2"){ 
                 success
                 words
                 error
@@ -113,7 +113,7 @@ describe('Graphql endpoints', () => {
       .post('/graphql')
       .send({
         query: `{  
-            getWords(number: "23456789"){ 
+            getWords(phoneNumber: "23456789"){ 
                 success
                 words
                 error

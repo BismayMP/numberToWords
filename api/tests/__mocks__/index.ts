@@ -51,7 +51,7 @@ export const mockedApiResponseSuccessFor234 = {
 
 export const mockedApiResponseError = {
   success: false,
-  error: 'Input cannot contain only digits and no 0/1',
+  error: 'No valid input, you can only use digits expect 0 and 1',
 }
 
 export const mockedGraphqlGetWordsResponseSuccessFor23 = {
@@ -68,6 +68,6 @@ export const mockedGraphqlGetWordsResponseSuccessFor234 = {
 
 export const mockedGraphqlGetWordsResponseError = {
   success: false,
-  error: 'Input cannot contain only digits and no 0/1',
+  error: 'No valid input, you can only use digits expect 0 and 1',
   words: null,
 }
