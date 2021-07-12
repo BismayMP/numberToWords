@@ -12,7 +12,7 @@ router.get('/:number', (req, res) => {
     const words = getWords(req.params.number)
     res.status(200).json({ success: true, words })
   } else {
-    res.status(400).json({ success: false, error: errorMessages.notValid })
+    res.json({ success: false, error: errorMessages.notValid })
   }
 })
 

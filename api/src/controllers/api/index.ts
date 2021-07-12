@@ -12,7 +12,7 @@ const NUMBERS: string[] = [
 ]
 
 export const errorMessages = {
-  notValid: 'Input cannot contain only digits and no 0/1',
+  notValid: 'No valid input, you can only use digits expect 0 and 1',
 }
 
 export const validate = (str: string): boolean =>

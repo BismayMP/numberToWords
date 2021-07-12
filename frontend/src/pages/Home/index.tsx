@@ -29,6 +29,14 @@ const HomePage = () => {
   const [words, setWords] = useState<string[]>([])
   const [getWords, { loading, data }] = useLazyQuery(GET_WORDS)
 
+  useEffect(() => {
+    if (apiType) {
+      data?.getWords?.success
+        ? setWords(data?.getWords?.words)
+        : setError(data?.getWords?.error)
+    }
+  }, [data, loading, apiType])
+
   const handleSwitch = (type: OptionTypes) => {
     const { api, filter, realTime } = OptionTypes
     switch (type) {
@@ -46,14 +54,6 @@ const HomePage = () => {
     }
   }
 
-  useEffect(() => {
-    if (apiType) {
-      data?.getWords?.success
-        ? setWords(data?.getWords?.words)
-        : setError(data?.getWords?.error)
-    }
-  }, [data, loading, apiType])
-
   const fetchWords = async (str?: string) => {
     if (apiType) {
       getWords({
@@ -64,16 +64,16 @@ const HomePage = () => {
       axios
         .get(`${apiUrl}/api/${str}`)
         .then(({ data }: getWordsResponseType) => {
+          console.log(data)
           if (data?.success) {
             setWords(data?.words)
           } else {
-            setError(data.error)
+            setError(data?.error)
           }
           setLoading(false)
         })
         .catch((err) => {
           setLoading(false)
-          setError(err)
         })
     }
   }
@@ -88,10 +88,11 @@ const HomePage = () => {
   return (
     <div className="home-container">
       <Row noGutters className="input-container">
+        <h4>Phoneword generator</h4>
         <InputGroup className="mb-3">
           <FormControl
             className="input"
-            type="phone"
+            type="tel"
             aria-label="Default"
             value={numbers}
             onChange={handleInputChange}
