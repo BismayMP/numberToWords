@@ -25,11 +25,11 @@
     height: 0;
   }
   input[type='checkbox']:checked + .lever {
-    background-color: #dccfe2;
+    background-color: #28a13838;
   }
   input[type='checkbox']:checked + .lever:after {
     left: 1.5rem;
-    background-color: #a6c;
+    background-color: #28a138;
   }
 }
 

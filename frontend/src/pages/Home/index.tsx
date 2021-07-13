@@ -8,8 +8,8 @@ import {
   Badge,
   Spinner,
   Alert,
-  Card,
 } from 'react-bootstrap'
+import _ from 'lodash'
 import Options from '../../components/Options'
 import { OptionTypes, getWordsResponseType } from '../../utils/types'
 import axios from 'axios'
@@ -65,24 +65,35 @@ const HomePage = () => {
       axios
         .get(`${apiUrl}/api/${str}`)
         .then(({ data }: getWordsResponseType) => {
-          console.log(data)
           if (data?.success) {
             setWords(data?.words)
           } else {
             setError(data?.error)
+            setTimeout(() => {
+            setError('')
+          }, 5000);
+            setWords([])
           }
           setLoading(false)
         })
-        .catch((err) => {
+        .catch(({ response }) => {
+          setWords([])
+          setError(response?.data?.error)
+          setTimeout(() => {
+            setError('')
+          }, 5000);
           setLoading(false)
         })
     }
   }
 
-  const handleInputChange = ({ target: { value } }: any) => {
+  const handleInputChange = async ({ target: { value } }: any) => {
+    setError('')
     setPhoneNumber(value)
     if (realTimeFetch) {
-      fetchWords(value)
+      _.debounce(async () => await fetchWords(value), 1000, {
+        leading: false,
+      })()
     }
   }
 
@@ -119,19 +130,17 @@ const HomePage = () => {
       <Row noGutters className="words-container">
         {words.length > 0 && (
           <>
-            <h4>Generated Words for {phoneNumber}</h4>
+            <h4>Generated Words</h4>
             {words.map((word: string, index: number) => {
               return (
-                <>
-                  <Badge
-                    key={index}
-                    pill
-                    variant="primary"
-                    className="word-badge"
-                  >
-                    {word}
-                  </Badge>
-                </>
+                <Badge
+                  key={index}
+                  pill
+                  variant="primary"
+                  className="word-badge"
+                >
+                  {word}
+                </Badge>
               )
             })}
           </>
@@ -144,7 +153,11 @@ const HomePage = () => {
           </Spinner>
         </div>
       )}
-      {error && <Alert variant="danger">{error}</Alert>}
+      {error && (
+        <Alert variant="danger" className="alert">
+          {error}
+        </Alert>
+      )}
     </div>
   )
 }

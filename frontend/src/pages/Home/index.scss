@@ -1,6 +1,6 @@
 @import '../../styles/vars.scss';
 
-@keyframes enterBadges {
+@keyframes slideIn {
   from {
     transform: translateX(100%);
     -webkit-transform: translateX(100%);
@@ -27,7 +27,11 @@
   }
   justify-content: center;
   .input-group {
+    padding-top: 1rem;
     width: 60%;
+    @media(max-width: 760px) {
+      width: 100%
+    }
   }
 }
 
@@ -48,7 +52,6 @@
 
 .word-badge {
   display: block;
-  animation: enterBadges 0.4s ease-in 0.1s;
   margin: 0.25rem;
   background-color: #28a138;
   &:hover {
@@ -59,22 +62,18 @@
 
 .isLoading {
   width: 100%;
-  display: grid;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
   align-content: center;
   justify-content: center;
   text-align: center;
+  span {
+    color: blue;
+  }
 }
 
 .words-container {
   justify-content: center;
   text-align: center;
+  margin: 0.25rem 0px 2rem 0px;
   .card {
     width: 100%;
     span {
@@ -85,4 +84,11 @@
     margin: 1rem 0px;
     width: 100%;
   }
+}
+
+.alert {
+  position: fixed;
+  bottom: 50px;
+  right: 5px;
+  animation: slideIn 0.4s ease-in 0.1s;
 }
