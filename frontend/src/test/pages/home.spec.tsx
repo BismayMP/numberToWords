@@ -18,11 +18,11 @@ describe('Home component', () => {
     render(<HomePage />)
     /** checking labels are rendered*/
     const input = screen.getByRole('textbox')
-    const btn = screen.getByText('Generate')
-    expect(btn).toBeDefined()
     expect(input).toBeDefined()
     fireEvent.change(input, { target: { value: '23' } })
     expect(input.value).toBe('23')
+    const btn = screen.getByText('Generate')
+    expect(btn).toBeDefined()
     btn.click()
     expect(axios.get).toHaveBeenCalledWith(
       `${process.env.REACT_APP_API_HOST}/api/23`,

@@ -7,14 +7,14 @@ import Switch from '../Switch'
 type Props = {
   handleSwitch: (type: OptionTypes) => void
   apiType: boolean
-  wordsFilter: boolean
+  showKeyboard: boolean
   realTimeFetch: boolean
 }
 
 const Options = ({
   handleSwitch,
   apiType,
-  wordsFilter,
+  showKeyboard,
   realTimeFetch,
 }: Props) => {
   return (
@@ -29,10 +29,12 @@ const Options = ({
         />
       </Col>
       <Col xs={12} md={4} className="option">
-        <h4>Filter real words</h4>
+        <h4>Show Keyboard</h4>
         <Switch
-          value={wordsFilter}
-          handleSwitch={() => handleSwitch(OptionTypes.filter)}
+          value={showKeyboard}
+          handleSwitch={() => handleSwitch(OptionTypes.keyboard)}
+          labelStart="Hide"
+          labelEnd="Show"
         />
       </Col>
       <Col xs={12} md={4} className="option">

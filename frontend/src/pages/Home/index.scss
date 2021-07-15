@@ -27,10 +27,14 @@
   }
   justify-content: center;
   .input-group {
+    flex-direction: column;
     padding-top: 1rem;
     width: 60%;
-    @media(max-width: 760px) {
-      width: 100%
+    input {
+      width: 100%;
+    }
+    @media (max-width: 760px) {
+      width: 100%;
     }
   }
 }
@@ -91,4 +95,20 @@
   bottom: 50px;
   right: 5px;
   animation: slideIn 0.4s ease-in 0.1s;
+}
+
+.content-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
+}
+
+.w-middle {
+  width: 50%;
+  @media (max-width: 960px) {
+    width: 100%;
+  }
 }

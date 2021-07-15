@@ -6,16 +6,16 @@ import { OptionTypes } from '../../utils/types'
 
 describe('testing options component', () => {
   let apiType = true
-  let wordsFilter = true
+  let showKeyboard = true
   let realTimeFetch = true
   const handleSwitch = (type: OptionTypes) => {
-    const { api, filter, realTime } = OptionTypes
+    const { api, keyboard, realTime } = OptionTypes
     switch (type) {
       case api:
         apiType = !apiType
         break
-      case filter:
-        wordsFilter = !wordsFilter
+      case keyboard:
+        showKeyboard = !showKeyboard
         break
       case realTime:
         realTimeFetch = !realTimeFetch
@@ -26,7 +26,12 @@ describe('testing options component', () => {
   }
   test('should match snapshoot', () => {
     const component = renderer.create(
-      <Options handleSwitch={handleSwitch} apiType wordsFilter realTimeFetch />,
+      <Options
+        handleSwitch={handleSwitch}
+        apiType
+        showKeyboard
+        realTimeFetch
+      />,
     )
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
@@ -37,7 +42,7 @@ describe('testing options component', () => {
       <Options
         handleSwitch={handleSwitch}
         apiType={apiType}
-        wordsFilter={wordsFilter}
+        showKeyboard={showKeyboard}
         realTimeFetch={realTimeFetch}
       />,
     )
@@ -49,7 +54,7 @@ describe('testing options component', () => {
       expect(item).toBeInTheDocument()
     })
     expect(apiType).toBeFalsy()
-    expect(wordsFilter).toBeFalsy()
+    expect(showKeyboard).toBeFalsy()
     expect(realTimeFetch).toBeFalsy()
   })
 
@@ -59,7 +64,7 @@ describe('testing options component', () => {
       <Options
         handleSwitch={handleChange}
         apiType={apiType}
-        wordsFilter={wordsFilter}
+        showKeyboard={showKeyboard}
         realTimeFetch={realTimeFetch}
       />,
     )

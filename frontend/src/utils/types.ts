@@ -1,6 +1,6 @@
 export enum OptionTypes {
   api = 'apiType',
-  filter = 'wordsFilter',
+  keyboard = 'keyboard',
   realTime = 'realTime',
 }
 
