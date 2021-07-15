@@ -1,17 +1,20 @@
-import { getWords, validate, errorMessages } from '../controllers/api/index'
+import { getWords, errorMessages } from '../controllers/api/index'
 import { GetWordsResponse } from '../utils/types'
 
-type ParamType = {
-  number: string
+type getWordsParam = {
+  phoneNumber: string
 }
 
 export default {
-  // Querie
-  getWords: ({ number }: ParamType): GetWordsResponse => {
-    if (validate(number)) {
-      const words = getWords(number)
-      return { success: true, words }
+  // Query
+  getWords: ({ phoneNumber }: getWordsParam): GetWordsResponse | undefined => {
+    try {
+      const words = getWords(phoneNumber)
+      return words.length > 0
+        ? { success: true, words }
+        : { success: false, error: errorMessages.notValid }
+    } catch (error) {
+      console.error(error)
     }
-    return { success: false, error: errorMessages.notValid }
   },
 }

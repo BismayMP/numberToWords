@@ -1,0 +1,36 @@
+@import '../../styles/vars.scss';
+
+.keyboard-card {
+  margin: 0.25rem 0px 2rem 0px;
+  .card {
+    border: none;
+    &-header {
+      background-color: #bdbdbd38;
+      border-bottom: none;
+      height: fit-content;
+      padding: 0px;
+    }
+    &-body {
+      border: none;
+      box-shadow: none;
+      background-color: #bdbdbd38;
+    }
+  }
+  h4 {
+    text-align: center;
+  }
+}
+
+.keyboard {
+  display: grid;
+  background-color: transparent;
+  grid-template-columns: auto auto auto;
+  button {
+    margin: 1px;
+    background-color: #818181;
+    border: none;
+    &:hover {
+      background-color: #28a138;
+    }
+  }
+}

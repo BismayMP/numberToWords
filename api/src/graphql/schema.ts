@@ -7,7 +7,7 @@ const schema = buildSchema(`
     error: String
   }
   type Query {
-    getWords(number: String) : Words
+    getWords(phoneNumber: String) : Words
   }
 `)
 

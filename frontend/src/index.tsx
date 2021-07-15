@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.scss'
-import App from './App'
+import './styles/index.scss'
 import reportWebVitals from './reportWebVitals'
+import Layout from './layouts'
+import HomePage from './pages/Home'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Layout>
+      <HomePage />
+    </Layout>
   </React.StrictMode>,
   document.getElementById('root'),
 )

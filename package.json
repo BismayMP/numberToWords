@@ -1,0 +1,24 @@
+{
+  "name": "numbertowords",
+  "version": "1.0.0",
+  "description": "Number to word list converter using nodejs, rect and docker",
+  "main": "index.js",
+  "scripts": {
+    "install": "concurrently \"cd api && npm install\" \"cd frontend && npm install\"",
+    "dev": "concurrently \"cd api && npm run dev\" \"cd frontend && npm start\"",
+    "test": "concurrently \"cd api && npm run test\" \"cd frontend && npm run test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BismayMP/numberToWords.git"
+  },
+  "author": "Bismay Morgado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BismayMP/numberToWords/issues"
+  },
+  "homepage": "https://github.com/BismayMP/numberToWords#readme",
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  }
+}

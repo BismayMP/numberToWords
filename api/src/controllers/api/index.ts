@@ -1,43 +1,52 @@
-const NUMBERS: any = {
-  2: 'abc',
-  3: 'def',
-  4: 'ghi',
-  5: 'jkl',
-  6: 'mno',
-  7: 'pqrs',
-  8: 'tuv',
-  9: 'wxyz',
-}
+const NUMBERS: string[] = [
+  '',
+  '',
+  'abc',
+  'def',
+  'ghi',
+  'jkl',
+  'mno',
+  'pqrs',
+  'tuv',
+  'wxyz',
+]
 
 export const errorMessages = {
-  notValid: 'Input cannot contain only digits and no 0/1',
+  notValid: 'No valid input, you can only use digits expect 0 and 1',
 }
 
 export const validate = (str: string): boolean =>
   Boolean(str && str.match('^[2-9]+$'))
 
-export const getWords = (str: string): string[] => {
-  let result: string[] = []
-  try {
-    str.split('').forEach((number: string) => {
-      const newWords: string[] = []
-      const letters: string = NUMBERS[number]
-      if (letters) {
-        for (const letter of letters) {
-          if (result.length) {
-            result.forEach((word: string) => {
-              newWords.push(word + letter)
-            })
-          } else {
-            newWords.push(letter)
-          }
-        }
-      }
-      result = newWords
-    })
-  } catch (error) {
-    console.error(error)
+const formWords = (
+  number: number[],
+  current: number,
+  currentWordLetters: string[],
+  n: number,
+  words: string[],
+) => {
+  if (current === n) {
+    words.push(currentWordLetters.join(''))
+    return
   }
+  const letters = NUMBERS[number[current]].split('')
+  for (const letter of letters) {
+    currentWordLetters.push(letter)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    formWords(number, current + 1, currentWordLetters, n, words)
+    currentWordLetters.pop()
+    if (number[current] == 0 || number[current] == 1) {
+      return
+    }
+  }
+}
 
+export const getWords = (str: string): string[] => {
+  const result: string[] = []
+  const currentWordLetters: string[] = []
+  if (validate(str)) {
+    const number = str.split('').map((item: string) => parseInt(item))
+    formWords(number, 0, currentWordLetters, number.length, result)
+  }
   return result
 }

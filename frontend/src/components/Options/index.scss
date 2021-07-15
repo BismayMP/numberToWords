@@ -1,0 +1,18 @@
+@import '../../styles/vars.scss';
+
+.optionsContainer {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.option {
+  width: 100%;
+  padding: 1rem;
+}
+
+.option-keyboard {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}

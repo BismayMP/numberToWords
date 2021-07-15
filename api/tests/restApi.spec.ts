@@ -2,9 +2,11 @@ import { errorMessages } from '../src/controllers/api'
 import request from 'supertest'
 import app from '../src/server'
 import {
-  mockedApiResponseSuccess,
+  mockedApiResponseSuccessFor23,
+  mockedApiResponseSuccessFor234,
   mockedApiResponseError,
-  mockedGetWordsResponse,
+  mockedGetWordsResponseFor23,
+  mockedGetWordsResponseFor234,
 } from './__mocks__'
 
 describe('Rest GET endpoints', () => {
@@ -30,7 +32,31 @@ describe('Rest GET endpoints', () => {
     expect(res.body.success).toBeTruthy()
     expect(res.body?.words).toBeDefined()
     expect(res.body?.words?.length).toBeGreaterThan(1)
-    expect(res.body?.words).toEqual(mockedGetWordsResponse)
-    expect(res.body).toEqual(mockedApiResponseSuccess)
+    expect(res.body?.words).toEqual(mockedGetWordsResponseFor23)
+    expect(res.body).toEqual(mockedApiResponseSuccessFor23)
+  })
+
+  test('fetch words using 234', async () => {
+    const res = await request(app)
+      .get('/api/234')
+      .expect('Content-Type', /json/)
+      .expect(200)
+    expect(res.body).toBeInstanceOf(Object)
+    expect(res.body.success).toBeTruthy()
+    expect(res.body?.words).toBeDefined()
+    expect(res.body?.words?.length).toBeGreaterThan(1)
+    expect(res.body?.words).toEqual(mockedGetWordsResponseFor234)
+    expect(res.body).toEqual(mockedApiResponseSuccessFor234)
+  })
+  test('fetch words using 2', async () => {
+    const res = await request(app)
+      .get('/api/2')
+      .expect('Content-Type', /json/)
+      .expect(200)
+    expect(res.body).toBeInstanceOf(Object)
+    expect(res.body.success).toBeTruthy()
+    expect(res.body?.words).toBeDefined()
+    expect(res.body?.words?.length).toBeGreaterThanOrEqual(3)
+    expect(res.body?.words).toEqual(['a', 'b', 'c'])
   })
 })
