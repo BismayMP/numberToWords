@@ -28,7 +28,7 @@ const Options = ({
           handleSwitch={() => handleSwitch(OptionTypes.api)}
         />
       </Col>
-      <Col xs={12} md={4} className="option">
+      <Col xs={12} md={4} className="option option-keyboard">
         <h4>Show Keyboard</h4>
         <Switch
           value={showKeyboard}
