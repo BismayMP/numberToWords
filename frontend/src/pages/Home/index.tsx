@@ -70,8 +70,8 @@ const HomePage = () => {
           } else {
             setError(data?.error)
             setTimeout(() => {
-            setError('')
-          }, 5000);
+              setError('')
+            }, 5000)
             setWords([])
           }
           setLoading(false)
@@ -81,7 +81,7 @@ const HomePage = () => {
           setError(response?.data?.error)
           setTimeout(() => {
             setError('')
-          }, 5000);
+          }, 5000)
           setLoading(false)
         })
     }
@@ -103,6 +103,7 @@ const HomePage = () => {
         <h4>Phoneword generator</h4>
         <InputGroup className="mb-3">
           <FormControl
+            id="numbers-input"
             className="input"
             type="tel"
             aria-label="Default"

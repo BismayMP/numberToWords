@@ -1,22 +1,31 @@
 import React from 'react'
+import dotenv from 'dotenv'
+import axios from 'axios'
 import renderer from 'react-test-renderer'
 import HomePage from '../../pages/Home/index'
+import { render, screen, fireEvent } from '@testing-library/react'
+dotenv.config()
 
-describe('Link changes the class when hovered', () => {
+jest.mock('axios')
+
+describe('Home component', () => {
   test('should match snapshot', () => {
     const component = renderer.create(<HomePage />)
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  // manually trigger the callback
-  /*tree.props.onMouseEnter()
-  // re-rendering
-  tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
-
-  // manually trigger the callback
-  tree.props.onMouseLeave()
-  // re-rendering
-  tree = component.toJSON()
-  expect(tree).toMatchSnapshot()*/
+  test('Insert data and click generate', () => {
+    render(<HomePage />)
+    /** checking labels are rendered*/
+    const input = screen.getByRole('textbox')
+    const btn = screen.getByText('Generate')
+    expect(btn).toBeDefined()
+    expect(input).toBeDefined()
+    fireEvent.change(input, { target: { value: '23' } })
+    expect(input.value).toBe('23')
+    btn.click()
+    expect(axios.get).toHaveBeenCalledWith(
+      `${process.env.REACT_APP_API_HOST}/api/23`,
+    )
+  })
 })
