@@ -34,9 +34,12 @@ const HomePage = () => {
 
   useEffect(() => {
     if (apiType) {
-      data?.getWords?.success
-        ? setWords(data?.getWords?.words)
-        : setError(data?.getWords?.error)
+      if (data?.getWords?.success) {
+        setWords(data?.getWords?.words)
+      } else {
+        setWords([])
+        setError(data?.getWords?.error)
+      }
     }
   }, [data, loading, apiType])
 
@@ -66,7 +69,7 @@ const HomePage = () => {
     if (isValid) {
       if (apiType) {
         getWords({
-          variables: { phoneNumber: phoneNumber },
+          variables: { phoneNumber: str },
         })
       } else {
         setLoading(true)
@@ -141,7 +144,7 @@ const HomePage = () => {
       />
       <Col className="content-result">
         {showKeyboard && (
-          <div className="w-middle">
+          <div className="w-middle keyboard-container">
             <Keyboard handleClick={handleKeyPressed} />
           </div>
         )}

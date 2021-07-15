@@ -112,3 +112,9 @@
     width: 100%;
   }
 }
+
+.keyboard-container {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
